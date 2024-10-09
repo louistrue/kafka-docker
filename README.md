@@ -7,7 +7,7 @@ This README provides instructions on how to interact with Kafka running in Docke
 To start the Kafka and related services, we navigate to the project directory and run:
 
 ```bash
-cd C:\Users\LouisTrümpler\Documents\GitHub\kafka-docker
+cd \kafka-docker
 docker-compose up
 ```
 
