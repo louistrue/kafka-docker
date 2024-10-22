@@ -3,7 +3,7 @@ import json
 
 consumer = KafkaConsumer(
     'output_topic',
-    bootstrap_servers='localhost:9092',
+    bootstrap_servers='localhost:19092',
     auto_offset_reset='earliest',
     enable_auto_commit=True,
     group_id='output-consumer-group',
@@ -13,4 +13,6 @@ consumer = KafkaConsumer(
 print("Consuming processed messages...")
 
 for message in consumer:
-    print(f"Processed Message: {message.value['processed_message']}")
+    processed_results = message.value.get('processed_results', [])
+    for result in processed_results:
+        print(f"Element: {result['element']}, Mass: {result['mass']}, KBOB UUID: {result['kbob_uuid']}, eBKP-H: {result['ebkp_h']}")
