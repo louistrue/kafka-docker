@@ -23,6 +23,8 @@ services:
       - "19092:19092" # For external communication
     volumes:
       - ./data:/var/lib/kafka/data
+    networks:
+      - kafka-network
 
   data_processor:
     build: ./data_processor
@@ -32,3 +34,9 @@ services:
     environment:
       - KAFKA_BOOTSTRAP_SERVERS=broker:9092
     restart: on-failure
+    networks:
+      - kafka-network
+
+networks:
+  kafka-network:
+    driver: bridge
